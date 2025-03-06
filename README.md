@@ -1,0 +1,2 @@
+# XN1_genome_scripts
+All SCRIPTS FOR XN1 GENOME ASSEMBLY
