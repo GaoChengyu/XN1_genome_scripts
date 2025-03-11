@@ -1,0 +1,123 @@
+###如何基于纯转录本（即mRNA）预测CDS区域并对应到gff文件
+
+1.根据mRNA gff提取全部转录本序列  （tbtools） 获得trans.fa
+2.将mRNA gff文件格式处理一下 方便TransDecoder分析
+gffread mRNA.gff -T -o mRNA.gtf  （先转成gtf）
+gtf_to_alignment_gff3.pl mRNA.gtf > mRNA.2.gff  （此时为适合TransDecoder分析的gff格式）
+3.提取最初ORF
+TransDecoder.LongOrfs -m 50 -t trans.fa
+4.pfam预测（可选）
+nohup hmmscan --cpu 25 -o pfam.trans.txt --tblout pfam.trans.tbl --noali -E 1e-5 /mnt/d/db/pfamA/Pfam-A.hmm tans.fa.transdecoder_dir/longest_orfs.pep &
+5.预测cds (需要在LongOrfs执行的目录下运行)
+TransDecoder.Predict -t trans.fa （pfam选项）
+
+产生四个文件
+
+trans.fa.transdecoder.pep: 最终预测的CDS对应的蛋白序列
+
+trans.fa.transdecoder.cds: 最终预测的CDS序列
+
+trans.fa.transdecoder.gff3: 最终ORF对应的GFF3
+
+trans.fa.transdecoder.bed: 以BED格式存放ORF位置信息
+
+这里需要trans.fa.transdecoder.cds和trans.fa.transdecoder.gff3
+因为这里最终预测结果，一个转录本可能存在多个得分不同的cds区域，需要根据得分，筛选分最高的cds区域，通过python脚本
+
+```{}
+import re
+from pyfasta import Fasta
+
+f = Fasta('trans.fa.transdecoder.cds')
+out="selected_id.txt"
+            
+idlist=sorted(f.keys())
+
+iddic={}
+for i in idlist:
+    i=i.split(" ")
+    id=re.search("\w+\d+\.\d+",i[0]).group()
+    score=re.search("\d+",i[5]).group()
+    
+    iddic.setdefault(id,[]).append([i[0],int(score)])
+with open(out,"w") as w:
+
+    for value in iddic.values():
+        scorelist=[i[1] for i in value]
+        max_idx=scorelist.index(max(scorelist))
+        id_selected=value[max_idx][0]
+        w.write(id_selected+"\n")
+```
+
+6.获得需要选择的cds区域id后
+grep -F -w -f selected_id.txt trans.fa.transdecoder.gff3 > selected.gff3
+
+7.生成基于参考基因组的编码区注释文件
+cdna_alignment_orf_to_genome_orf.pl selected.gff3 mRNA.2.gff trans.fa > mRNA.cds.genome.gff
+
+8.cds的ID名称可能会相比转录本名称多一个.p1，先转化成gtf，再用python处理
+import re
+
+
+oldgtf="mRNA.cds.genome.gtf"
+newgtf="mRNA.cds.genome.n.gtf"
+
+with open(newgtf,"w") as w:
+    with open(oldgtf,"r") as f:
+        for line in f:
+            a=re.search("\w+\d+\.\d+",line)
+            a=a.group()
+            #print(a)
+            b=re.search("\w+\d+\.\d+\.p\d+",line)
+            b=b.group()
+            #print(b)
+            lin=line.strip().split("\t")
+            lin[8]=lin[8].replace(b,a)
+
+            line="\t".join(lin)
+            w.write(line+"\n")
+
+用tbtools  gxffix修改gtf成gff
+9.只提取mRNA.cds.genome.gff中type为CDS的部分
+
+grep -F -w "CDS" mRNA.cds.genome.fix.gff >mRNA.only.cds.genome.gff
+
+10.把这部分和之前只有mRNA的gff文件合并 
+
+11.此时，一些ssrnaseq组装出的转录本会和isoseq组装出的转录本具有相同cds，这一类转录本往往不可信，需要剔除。因此先获得所有ssRNASeq组装出的转录本的cds序列（qurey）和isoseq转录本的cds序列（subject），tbtools的blast比对后，用以下python脚本获得需要剔除的转录本id。
+
+```{}
+from pyfasta import Fasta
+
+input="/mnt/d/data/XN21/isoseq/0609rebuild/7polish/去除多余的rnaseq"
+
+#awk 'BEGIN{FS="\t";OFS="\t"}{if ($3==100){print $0}}' blast.txt > blast.fix.txt
+
+qfasta=Fasta(f'{input}/rnaseq.cds.fa')
+qlendic={}
+for key in qfasta.keys():
+    qlendic[key]=len(qfasta[key])
+
+
+sfasta=Fasta(f'{input}/isoseq.cds.fa')
+slendic={}
+for key in sfasta.keys():
+    slendic[key.split(" ")[0]]=len(sfasta[key])
+
+removelist=[]
+with open(f'{input}/blast.fix.txt','r') as f:
+    for line in f:
+        line=line.strip().split("\t")
+        qlen=int(line[7])-int(line[6])+1
+        slen=int(line[9])-int(line[8])+1
+        if qlen==int(qlendic[line[0]]) and slen==int(slendic[line[1]]) and qlen==slen:
+            removelist.append(line[0])
+
+removelist=list(set(removelist))
+
+with open(f'{input}/remove.list','w') as w:
+    for i in removelist:
+        w.write(i+"\n")
+```
+
+12.最后手动纠错即可

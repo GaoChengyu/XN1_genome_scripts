@@ -1,0 +1,16 @@
+###GO注释 eggnog
+##获得go2term
+awk 'BEGIN{FS="\t";OFS="\t"}{if ($10!="-"){print substr($1,1,(length($1)-3)),$10}}' eggNOG_diamondta.emapper.annotations|awk 'BEGIN{FS="\t";OFS="\t"} {split($2,a,",");for (i=1;i<=length(a);i++){print a[i],$1}}' > go2term.txt
+
+
+awk 'BEGIN{FS="\t";OFS="\t"}{if ($14!="" && $14!="-"){print $1,$14}}' dm.ipscan |awk 'BEGIN{FS="\t";OFS="\t"} {split($2,a,"|");for (i=1;i<=length(a);i++){print a[i],$1}}' |sort|uniq >interpro.go2term.txt
+
+
+##下载ftp go术语描述
+
+wget http://current.geneontology.org/ontology/go.obo
+
+
+自编脚本 GOtermNameTrans.py转化
+
+GOtermNameTrans.py go2name.txt go.obo

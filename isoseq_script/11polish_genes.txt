@@ -1,0 +1,169 @@
+用GSAman对基因结构进行矫正
+
+矫正过程中，可能存在CDS方向和转录本方向不一致，需要检测并手动矫正
+import collections
+indexexon=collections.defaultdict(list)
+indexCDS=collections.defaultdict(list)
+index={}
+with open("/mnt/d/data/XN21/xn1genome/replaceGff/needfix.rewrite.gff","r") as f:
+    for line in f:
+        line=line.strip().split("\t")
+        type_=line[2]
+        strand=line[6]
+        attri=line[8]
+        if type_=="exon":
+            idname=attri.split(";")[0].split("=")[1]
+            #print(idname)
+            location=(type_,strand)
+            #print(location)
+
+            indexexon[idname].append(location)
+        if type_=="CDS":
+            idname=attri.split(";")[0].split("=")[1]
+            #print(idname)
+            location=(type_,strand)
+            #print(location)
+
+            indexCDS[idname].append(location)
+
+
+for key in indexexon.keys():
+    #print(indexexon[key][0])
+    try:
+        index[key]=(indexexon[key][0],indexCDS[key][0])
+        #print(index[key])
+    except IndexError:
+        pass
+    continue
+
+
+
+with open("/mnt/d/data/XN21/xn1genome/replaceGff/wrong2.list","w") as w:
+    for key in index.keys():
+        try:
+            if index[key][0][1]!=index[key][1][1]:
+                #print(key)
+                w.write(key+"\n")
+        except IndexError:
+            pass
+        continue
+
+
+矫正后使用自编python脚本 renameGFF.py重命名基因
+
+重命名后用TBtools fix一下
+
+此时，要确定可以代表基因的转录本，命名为T0 根据所有样本中表达量TPM最高的转录本 命名为T0
+
+salmon对转录本定量
+#先构建索引
+salmon index -t trans.fa -i transcripts_index -k 31
+
+####注意链特异性的参数 不然结果差异很大 illuminna通常的链特异性建库方式是，双端测序，read1是反义链，而read2是正义链 -l ISR 非链特-l IU
+
+##进入fq文件文件夹
+ls *gz|cut -d"_" -f 1,2|sort -u |while read id;do
+ nohup salmon quant -i /mnt/d/data/XN21/isoseq/0609rebuild/9AS/transcripts_index/  -l ISR --gcBias \
+ -1 ${id}_1.clean.fq.gz  -2 ${id}_2.clean.fq.gz  -p 2 \
+ -o  ../salmon_output/${id}_output 1>${id}_salmon.log 2>&1  &
+ done
+
+对我们的全部样品的 quant.sf文件 进行信息提取TPM
+multipleFieldSelection.py -i  *output/quant.sf -k 1 -f 4 -o iso_tpm.txt
+
+R脚本前期处理
+```{r}
+library(tidyverse)
+mat<-read.delim("iso_tpm.txt",header = T,row.names = 1)
+matdf<-mat%>%mutate(maxvalue=apply(mat,1,max))%>%
+  mutate(genes=substr(rownames(mat),1,9),trans=rownames(mat))%>%
+  select(maxvalue,genes,trans)
+
+write.table(matdf,file = "maxtpm.txt",sep = "\t",row.names = F,col.names = F,quote = F)
+
+{}
+
+python脚本再处理
+
+```{python}
+import re
+
+matrix="/mnt/d/data/XN21/isoseq/0609rebuild/7polish/finalGFF/tpm/maxtpm.txt"
+gff="/mnt/d/data/XN21/isoseq/0609rebuild/7polish/finalGFF/DMXN1genome.fix.gff"
+newgff="/mnt/d/data/XN21/isoseq/0609rebuild/7polish/finalGFF/DM.genome.gff"
+
+
+maxdic={}
+with open(matrix) as f:
+    for line in f:
+        
+        maxvalue=line.strip().split("\t")[0]
+        genes=line.strip().split("\t")[1]
+        trans=line.strip().split("\t")[2]
+        sublist=[trans,maxvalue]
+        maxdic.setdefault(genes,[]).append(sublist)
+
+
+asgenetran={}
+for key in maxdic.keys():
+    
+    adic={i[0]:float(i[1]) for i in maxdic[key]}
+    maxkey=max(adic,key=lambda x:adic[x])
+    asgenetran.update({maxkey:maxkey[0:9]+"T0"})
+
+
+
+
+gene2tran={}
+with open(gff) as f1:
+    for line in f1:
+        lin=line.strip().split("\t")
+        type_=lin[2]
+        attributions=lin[8]
+        if type_=="mRNA":
+            tranid=re.search(r'(?<=ID=)DMXN[0-9]+T[0-9]+',attributions).group()
+            geneid=tranid[0:9]
+            if not asgenetran.get(tranid):
+                gene2tran.setdefault(geneid,[]).append(tranid)
+
+
+newid={}
+for key in gene2tran.keys():
+    maxorder=len(gene2tran[key])
+    startorder=1
+    while startorder<=maxorder:
+        newid[gene2tran[key][startorder-1]]=key+"T"+str(startorder)
+        startorder+=1
+
+
+with open(newgff,"w") as w:
+    with open(gff) as f2:
+        for line in f2:
+            lin=line.strip().split("\t")
+            type_=lin[2]
+            attributions=lin[8]
+            if type_=="mRNA":
+                tranid=re.search(r'(?<=ID=)DMXN[0-9]+T[0-9]+',attributions).group()
+                if asgenetran.get(tranid):
+                    newtranid=asgenetran[tranid]
+                    newline=line.replace(tranid,newtranid)
+                    print(newline)
+                else:
+                    newtranid=newid[tranid]
+                    newline=line.replace(tranid,newtranid)
+                    print(newline)
+            else:
+                tranid=re.search(r'(?<=Parent=)DMXN[0-9]+T[0-9]+',attributions).group()
+                if asgenetran.get(tranid):
+                    newtranid=asgenetran[tranid]
+                    newline=line.replace(tranid,newtranid)
+                    w.write(newline)
+                else:
+                    newtranid=newid[tranid]
+                    newline=line.replace(tranid,newtranid)
+                    w.write(newline)           
+
+```
+
+
+
