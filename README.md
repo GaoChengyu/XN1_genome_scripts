@@ -8,3 +8,4 @@ Here, we have uploaded all the codes related to this study to this repository af
 - **comprehensive_transcript_annotation**： Codes related to the construction of the full-length transcriptome of the XN1 genome.
 - **repeat_identified**： Codes related to the identification, classification, and filtering of repetitive sequences.
 - **pangenome_and_SV**： Codes related to pan-genome construction and structural variation (SV) identification.
+- **two_speed_genome_and_SNP**:  Codes related to two-speed genome and SNP identification.
