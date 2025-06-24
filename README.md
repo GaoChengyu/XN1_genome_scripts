@@ -9,3 +9,4 @@ Here, we have uploaded all the codes related to this study to this repository af
 - **repeat_identified**： Codes related to the identification, classification, and filtering of repetitive sequences.
 - **pangenome_and_SV**： Codes related to pan-genome construction and structural variation (SV) identification.
 - **two_speed_genome_and_SNP**:  Codes related to two-speed genome and SNP identification.
+- **plot**： Codes related to fugures plotting.
