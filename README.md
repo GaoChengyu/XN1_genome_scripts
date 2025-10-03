@@ -116,7 +116,7 @@ If you use this code in your research, please cite our paper:
 ```
 
 ## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/LICENSE) file for details.
 
 ## 🙋‍♂️ Contact
 For questions, issues, or suggestions:
