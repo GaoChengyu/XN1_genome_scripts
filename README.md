@@ -11,7 +11,7 @@
 - [Overview](#Overview)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
+- [Usage](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-usage)
 - [Data Format](#data-format)
 - [Configuration](#configuration)
 - [Project Structure](#project-structure)
