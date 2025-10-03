@@ -8,7 +8,7 @@
 
 ## 📋 Table of Contents
 
-- [Overview](##overview)
+- [Overview](#🎯 Overview)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
