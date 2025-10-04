@@ -26,7 +26,7 @@ The plant pathogenic fungus *Diplocarpon coronariae* is a major causative agent 
 
 Here, we have uploaded all the codes related to this study to this repository after sorting, aiming at knowledge sharing and improving the reproducibility of our research.
 
-## Content
+## ✨ Features
 - **genome_assembly**： Codes related to the T2T-level assembly of the XN1 genome.
 - **comprehensive_transcript_annotation**： Codes related to the construction of the full-length transcriptome of the XN1 genome.
 - **repeat_identified**： Codes related to the identification, classification, and filtering of repetitive sequences.
