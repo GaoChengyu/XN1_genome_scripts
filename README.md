@@ -127,9 +127,7 @@ Email: gaocy9611@nwafu.edu.cn
 ## 🙏 Acknowledgments
 We thank:
 
-The developers of [Library/Framework] for their excellent tools
-
-[Dataset providers] for making their data available
+The developers of all software using in this work for their excellent tools
 
 Reviewers for their valuable feedback
 
@@ -138,6 +136,7 @@ Contributors who helped improve this project
 
 
 <div align="center">
+  
 If this work is helpful, please give it a ⭐!
 
 </div> 
