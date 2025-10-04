@@ -8,18 +8,17 @@
 
 ## 📋 Table of Contents
 
-- [Overview](#Overview)
-- [Features](#features)
-- [Installation](#installation)
+- [Overview](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-overview)
+- [Features](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-features)
+- [Installation](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-installation)
 - [Usage](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-usage)
-- [Data Format](#data-format)
-- [Configuration](#configuration)
-- [Project Structure](#project-structure)
-- [Reproducing Results](#reproducing-results)
-- [Contributing](#contributing)
-- [Citation](#citation)
-- [License](#license)
-- [Contact](#contact)
+- [Data Format](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-data-format)
+- [Project Structure](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-project-structure)
+- [Contributing](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-contributing)
+- [Citation](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-citation)
+- [License](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-license)
+- [Contact](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#%E2%80%8D%EF%B8%8F-contact)
+- [Acknowledgments](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-acknowledgments)
 
 ## 🎯 Overview
 The plant pathogenic fungus *Diplocarpon coronariae* is a major causative agent of apple Marssonina leaf blotch, affecting the global apple industry safety. We isolated a purified XN1 strain of *D. coronariae* via single spore technology, assembled its genome to T2T levels, and presented a precise full-length transcriptome using PacBio sequencing and manual curation. Based on high-quality assembly and gene annotation, we discovered that LTR-RTs drove structural variations and gene evolution within and between species of *D. coronariae*. Furthermore, we assembled a young chromosome specific to *D. coronariae*, designated as Chr15.
@@ -27,6 +26,8 @@ The plant pathogenic fungus *Diplocarpon coronariae* is a major causative agent 
 Here, we have uploaded all the codes related to this study to this repository after sorting, aiming at knowledge sharing and improving the reproducibility of our research.
 
 ## ✨ Features
+All executable scripts in this code repository are stored in the scripts directory, which is divided into multiple subdirectories with the following features:
+
 - **genome_assembly**： Codes related to the T2T-level assembly of the XN1 genome.
 - **comprehensive_transcript_annotation**： Codes related to the construction of the full-length transcriptome of the XN1 genome.
 - **repeat_identified**： Codes related to the identification, classification, and filtering of repetitive sequences.
@@ -40,6 +41,8 @@ Here, we have uploaded all the codes related to this study to this repository af
 
 ## 📊 Data Format
 
+For detailed descriptions of data formats and related example data, please refer to the files in the example_data directory.
+
 ## 📁 Project Structure
 
 ```{}
@@ -48,7 +51,7 @@ XN1_genome_scripts/
 │   ├── main.yaml              # Main configuration
 │   ├── train_baseline.yaml    # Training config
 │   └── hparam_space.yaml      # Hyperparameter search space
-├── 📁 data/                   # Data directory
+├── 📁 example_data/           # Example Data directory
 │   ├── raw/                   # Raw data (immutable)
 │   ├── processed/             # Processed data
 │   └── external/              # External data sources
@@ -93,10 +96,6 @@ XN1_genome_scripts/
 │   └── troubleshooting.md     # Common issues and solutions
 ├── 📄 environment.yml         # Conda environment
 ├── 📄 requirements.txt        # Pip requirements
-├── 📄 setup.py               # Package installation
-├── 📄 pyproject.toml         # Modern package config
-├── 📄 Makefile               # Automation commands
-├── 📄 Dockerfile             # Container configuration
 └── 📄 README.md              # This file
 ```
 
