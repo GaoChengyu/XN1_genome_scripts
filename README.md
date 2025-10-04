@@ -119,7 +119,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 ## 🙋‍♂️ Contact
 For questions, issues, or suggestions:
 
-Issues: GitHub Issues
+Issues: [GitHub Issues](https://github.com/GaoChengyu/XN1_genome_scripts/issues)
 
 Email: gaocy9611@nwafu.edu.cn
 
