@@ -8,17 +8,17 @@
 
 ## 📋 Table of Contents
 
-- [Overview](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-overview)
-- [Features](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-features)
-- [Installation](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-installation)
+- [Overview](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-overview)
+- [Features](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-features)
+- [Installation](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-installation)
 - [Usage](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-usage)
-- [Data Format](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-data-format)
-- [Project Structure](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-project-structure)
-- [Contributing](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-contributing)
-- [Citation](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-citation)
-- [License](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-license)
-- [Contact](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#%E2%80%8D%EF%B8%8F-contact)
-- [Acknowledgments](https://github.com/GaoChengyu/XN1_genome_scripts/edit/main/README.md#-acknowledgments)
+- [Data Format](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-data-format)
+- [Project Structure](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-project-structure)
+- [Contributing](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-contributing)
+- [Citation](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-citation)
+- [License](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-license)
+- [Contact](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#%E2%80%8D%EF%B8%8F-contact)
+- [Acknowledgments](https://github.com/GaoChengyu/XN1_genome_scripts/blob/main/README.md#-acknowledgments)
 
 ## 🎯 Overview
 The plant pathogenic fungus *Diplocarpon coronariae* is a major causative agent of apple Marssonina leaf blotch, affecting the global apple industry safety. We isolated a purified XN1 strain of *D. coronariae* via single spore technology, assembled its genome to T2T levels, and presented a precise full-length transcriptome using PacBio sequencing and manual curation. Based on high-quality assembly and gene annotation, we discovered that LTR-RTs drove structural variations and gene evolution within and between species of *D. coronariae*. Furthermore, we assembled a young chromosome specific to *D. coronariae*, designated as Chr15.
