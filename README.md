@@ -25,7 +25,7 @@ The plant pathogenic fungus *Diplocarpon coronariae* is a major causative agent 
 Here, we have uploaded all the codes related to this study to this repository after sorting, aiming at knowledge sharing and improving the reproducibility of our research.
 
 ## ✨ Features
-All executable scripts in this code repository are stored in the scripts directory, which is divided into multiple subdirectories with the following features:
+All executable scripts in this code repository are stored in the ./scr directory, which is divided into multiple subdirectories with the following features:
 
 - **genome_assembly**： Codes related to the T2T-level assembly of the XN1 genome.
 - **comprehensive_transcript_annotation**： Codes related to the construction of the full-length transcriptome of the XN1 genome.
@@ -55,7 +55,7 @@ XN1_genome_scripts/
 │   ├── processed/             # Processed data
 │   └── external/              # External data sources
 ├── 📁 src/                    # Source code
-│   ├── data/                  # Data processing modules
+│   ├── genome_assembly/        # Data processing modules
 │   │   ├── __init__.py
 │   │   ├── loaders.py         # Data loading utilities
 │   │   ├── preprocessors.py   # Data preprocessing
