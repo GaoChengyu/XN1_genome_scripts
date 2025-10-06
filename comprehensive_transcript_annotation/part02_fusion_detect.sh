@@ -5,7 +5,7 @@
 # Check if correct number of arguments are provided
 if [ $# -ne 4 ]; then
     echo "Error: Invalid number of arguments."
-    echo "Usage: ./part01_data_filter.sh <input_fasta> <output_directory>"
+    echo "Usage: ./part02_fusion_detect.sh <input_fasta> <output_directory>"
     echo "  <input_fasta>: Path to the input polished transcripts FASTA file (e.g., sample_clean.fa)"
     echo "  <output_directory>: Path to the output directory for all generated files"
     echo "  <ref_genome>: Reference genome path"
@@ -99,4 +99,5 @@ echo "Input file: $INPUT_FASTA"
 echo "Output directory: $OUTPUT_DIR"
 echo "Final filtered transcripts: ${SAMPLE}_clean_nofusion.fa"
 echo "Fusion detection results: ${SAMPLE}_fusion.*"
+
 
