@@ -3,24 +3,25 @@
 # Usage: ./part01_data_filter.sh <input_file> <output_directory>
 
 # Check if correct number of arguments are provided
-if [ $# -ne 2 ]; then
+if [ $# -ne 3 ]; then
     echo "Error: Invalid number of arguments."
-    echo "Usage: ./part01_data_filter.sh <input_file> <output_directory>"
+    echo "Usage: ./part01_data_filter.sh <input_file> <output_directory> <reference_genome>"
     echo "  <input_file>: Path to the input subreads BAM file"
     echo "  <output_directory>: Path to the output directory for all generated files"
+    echo "  <reference_genome>: Path to reference genome
     exit 1
 fi
 
 # Assign input parameters to variables
 INPUT_FILE="$1"
 OUTPUT_DIR="$2"
+REF_PATH="$3"
 
 # Configuration Section - Modify these variables as needed
 THREADS=30                       # Number of threads for parallel processing
 SAMPLE="condi"                      # Sample identifier
 CONDITION="condi"                # Experimental condition identifier
 REF_GENOME="XN1.fasta"           # Reference genome file name
-REF_PATH="XN1.genome.chr.fasta"  # Path to reference genome
 PRIMER="primer.fasta"            # Primer sequences file
 
 # Note: The second subreads file path is now constructed differently since we're only taking one main input
