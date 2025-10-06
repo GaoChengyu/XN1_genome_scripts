@@ -1,6 +1,6 @@
 #!/bin/bash
 # Description: Automated pipeline for Iso-Seq data processing and alignment using SMRT Tools and GMAP
-# Usage: ./part01_data_filter.sh <input_file> <output_directory>
+# Usage: ./part01_data_filter.sh <input_file> <output_directory> <reference_genome>
 
 # Check if correct number of arguments are provided
 if [ $# -ne 3 ]; then
