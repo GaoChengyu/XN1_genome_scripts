@@ -1,6 +1,6 @@
 #!/bin/bash
 # Description: Processes polished transcripts through alignment, fusion detection, and filtering
-# Usage: ./part01_data_filter.sh <input_fasta> <output_directory> <ref_genome> <cluster_report>
+# Usage: ./part02_fusion_detect.sh <input_fasta> <output_directory> <ref_genome> <cluster_report>
 
 # Check if correct number of arguments are provided
 if [ $# -ne 4 ]; then
@@ -99,3 +99,4 @@ echo "Input file: $INPUT_FASTA"
 echo "Output directory: $OUTPUT_DIR"
 echo "Final filtered transcripts: ${SAMPLE}_clean_nofusion.fa"
 echo "Fusion detection results: ${SAMPLE}_fusion.*"
+
