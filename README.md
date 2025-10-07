@@ -37,6 +37,35 @@ All executable scripts in this code repository are stored in the ./scr directory
 ## 🚀 Installation
 
 ## 📖 Usage
+### comprehensive_transcript_annotation
+**part05_ssRNA-seqAssemble.sh**
+
+This pipeline performs comprehensive transcriptome assembly from strand-specific RNA-seq data. It processes raw sequencing reads through alignment, transcript assembly, expression quantification, and redundancy removal to produce a high-confidence set of transcripts.
+
+**part05_ssRNA-seqAssemble.sh**
+
+This pipeline performs comprehensive transcriptome assembly from strand-specific RNA-seq data. It processes raw sequencing reads through alignment, transcript assembly, expression quantification, and redundancy removal to produce a high-confidence set of transcripts.
+
+Prerequisites:
+- HISAT2 - Spliced read aligner
+- StringTie - Transcript assembly
+- TACO - Transcript assembly merging
+- featureCounts - Read counting
+- SAMtools - BAM/SAM processing
+- Minimap2 - Sequence alignment
+- TAMA - Transcript collapsing
+- seqkit - Sequence processing
+
+Quick Start:
+
+```{}
+./part05_ssRNA-seqAssemble.sh <input_data_directory> <output_directory>
+#<input_data_directory>: Directory containing RNA-seq FASTQ files
+#<output_directory>: Directory where all output files will be written
+```
+**part05_ssRNA-seqAssemble.sh**
+
+This pipeline performs comprehensive transcriptome assembly from strand-specific RNA-seq data. It processes raw sequencing reads through alignment, transcript assembly, expression quantification, and redundancy removal to produce a high-confidence set of transcripts.
 
 ## 📊 Data Format
 
