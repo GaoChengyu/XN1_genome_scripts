@@ -36,7 +36,43 @@ All executable scripts in this code repository are stored in the ./scr directory
 
 ## 🚀 Installation
 
+```{}
+# Clone this repository
+git clone https://github.com/GaoChengyu/XN1_genome_scripts.git
+cd XN1_genome_scripts/scr
+```
+
 ## 📖 Usage
+### genome_assembly
+**part00_bam2fasta_pipeline.sh**
+
+Integrated workflow for PacBio long-read file format transformation: bam to fasta.
+
+Prerequisites:
+- bam2fastx - transform raw data format
+
+Quick Start:
+
+```{}
+./part00_bam2fasta_pipeline.sh <output_fasta_file> <input_bam_file>
+#<output_fasta_file>: PacBio long-read FASTA file
+#<input_bam_file>: PacBio long-read BAM file
+```
+**part01_canu_pipeline.sh**
+
+A comprehensive and automated pipeline for processing PacBio long-read sequencing data using Canu. This workflow performs error correction, quality trimming, and de novo assembly in three sequential stages to produce high-quality genome assemblies from raw PacBio reads.
+
+Prerequisites:
+- Canu (v2.0 or higher) - Long-read assembler
+
+Quick Start:
+
+```{}
+./part01_canu_pipeline.sh <output_directory> <input_reads.fastq>
+#<output_directory>: Directory where all output files will be written
+#<input_reads.fastq>: Raw PacBio sequencing reads
+```
+
 ### comprehensive_transcript_annotation
 **part05_ssRNA-seqAssemble.sh**
 
