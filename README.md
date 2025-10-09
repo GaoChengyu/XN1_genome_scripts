@@ -121,7 +121,7 @@ Ensure the following tools are installed and available in your PATH
 Quick Start:
 
 ```{}
-./hic_scaffolding_pipeline.sh <contigs.fasta> <R1_reads> <R2_reads>
+./part03_contig_to_chr.sh <contigs.fasta> <R1_reads> <R2_reads>
 #<contigs.fasta>: Initial genome assembly contigs in FASTA format
 #<R1_reads>: Hi-C forward reads (R1)
 #<R2_reads>: Hi-C reverse reads (R2)
