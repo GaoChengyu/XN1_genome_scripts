@@ -459,7 +459,7 @@ XN1_genome_scripts/
 │   │   ├── comb_coverage01.py   
 │   │   ├── SV_distrabution.py  
 │   │   └── SV_Validation.sh 
-│   ├── plot/       # Training utilities
+│   ├── plot/  
 │   │   ├── fig1c.r    
 │   │   ├── fig2bc.py   
 │   │   ├── fig3d.r  
