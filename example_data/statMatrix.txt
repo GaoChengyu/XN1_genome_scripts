@@ -1,0 +1,11 @@
+	Blumeria_graminis_f_sp_tritici	Botrytis_cinerea	Diplocarpon_mali	Diplocarpon_rosae	Erysiphe_necator	Erysiphe_pulchra	Magnaporthe_oryzae	Marssonina_brunnea	Rhynchosporium_agropyri	Rhynchosporium_commune	Rhynchosporium_secalis	Sclerotinia_borealis	Sclerotinia_sclerotiorum
+Number of genes	8347	13749	9842	7168	6484	6859	12755	10027	13673	12211	13145	10166	10175
+Number of genes in orthogroups	7735	12783	7524	7024	6349	6772	9543	8987	13425	12177	13000	9511	7389
+Number of unassigned genes	612	966	2318	144	135	87	3212	1040	248	34	145	655	2786
+Percentage of genes in orthogroups	92.7	93.0	76.4	98.0	97.9	98.7	74.8	89.6	98.2	99.7	98.9	93.6	72.6
+Percentage of unassigned genes	7.3	7.0	23.6	2.0	2.1	1.3	25.2	10.4	1.8	0.3	1.1	6.4	27.4
+Number of orthogroups containing species	5206	9394	6971	6638	5103	5260	7419	7676	12018	11087	11852	8436	6421
+Percentage of orthogroups containing species	33.4	60.3	44.8	42.6	32.8	33.8	47.6	49.3	77.2	71.2	76.1	54.2	41.2
+Number of species-specific orthogroups	226	219	26	10	38	32	287	51	23	2	2	12	32
+Number of genes in species-specific orthogroups	2306	524	91	35	180	283	933	538	57	5	6	35	172
+Percentage of genes in species-specific orthogroups	27.6	3.8	0.9	0.5	2.8	4.1	7.3	5.4	0.4	0.0	0.0	0.3	1.7
